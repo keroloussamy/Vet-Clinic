@@ -6,12 +6,11 @@ CREATE TABLE animals (
   date_of_birth DATE NOT NULL,
   escape_attempts INT NOT NULL,
   neutered BOOLEAN NOT NULL,
-  weight_kg DECIMAL NOT NULL,
-  species_id INT NOT NULL,
-  owner_id INT NOT NULL,
-  CONSTRAINT fk_species FOREIGN KEY(species_id) REFERENCES species(id),
-  CONSTRAINT fk_owner FOREIGN KEY(owner_id) REFERENCES owners(id)
+  weight_kg DECIMAL NOT NULL
 );
+
+ALTER TABLE animals ADD species_id int REFERENCES species(id);
+ALTER TABLE animals ADD owner_id int REFERENCES owners(id);
 
 CREATE TABLE owners (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
