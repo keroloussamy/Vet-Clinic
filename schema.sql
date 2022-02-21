@@ -18,6 +18,8 @@ CREATE TABLE owners (
   age INT NOT NULL
 );
 
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
 CREATE TABLE species (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(250) NOT NULL
@@ -48,3 +50,7 @@ CREATE TABLE visits (
 	FOREIGN KEY (animals_id) REFERENCES animals (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+
+CREATE INDEX idx_visits_animals ON visits(animals_id);
+CREATE INDEX idx_visits_vets ON visits(vets_id);
+CREATE INDEX idx_owners_email ON owners(email);
